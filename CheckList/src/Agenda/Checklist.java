@@ -34,7 +34,13 @@ public class Checklist {
        if (i == 1) {
            System.out.println(tarefaList);
        } else if (i == 2) {
-           System.out.println();
+           tarefaList.stream().
+                   filter(Tarefa::isAtiva).
+                   forEach(System.out::println);
+       } else {
+           tarefaList.stream().
+                   filter(Tarefa::isInativa).
+                   forEach(System.out::println);
        }
     }
 

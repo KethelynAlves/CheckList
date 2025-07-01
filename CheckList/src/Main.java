@@ -12,9 +12,15 @@ public class Main {
 
         lista.adicionarTarefa();
         lista.adicionarTarefa();
-        System.out.println(lista);
+        lista.mostrarTarefas(1);
+        lista.mostrarTarefas(2);
+        lista.mostrarTarefas(3);
         lista.alterarStatus(lista.getTarefaList().get(0));
-        System.out.println(lista);
+        lista.mostrarTarefas(1);
+        System.out.println("\n\n\nTeste ativo");
+        lista.mostrarTarefas(2);
+        System.out.println("\n\n\nTeste inativo");
+        lista.mostrarTarefas(3);
     }
 
 }

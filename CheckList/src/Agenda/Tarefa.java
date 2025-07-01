@@ -36,6 +36,13 @@ public class Tarefa {
         this.dataAlteracao = dataAlteracao;
     }
 
+    public boolean isAtiva() {
+        return true;
+    }
+
+    public boolean isInativa() {
+        return false;
+    }
     @Override
     public String toString() {
         return "\nChecklist:\n" +
