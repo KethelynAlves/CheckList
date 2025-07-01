@@ -12,7 +12,9 @@ public class Main {
 
         lista.adicionarTarefa();
         lista.adicionarTarefa();
-        System.out.println(lista.toString());
+        System.out.println(lista);
+        lista.alterarStatus(lista.getTarefaList().get(0));
+        System.out.println(lista);
     }
 
 }
