@@ -10,21 +10,23 @@ public class Tarefa {
     private LocalDate dataInicio;
     private LocalDate dataAlteracao;
 
-    public void checklist(String texto){
+    public Tarefa(String texto){
         this.texto = texto;
         this.status = true;//true = ativo
         this.dataInicio = LocalDate.now();
         this.dataAlteracao = LocalDate.now();
     }
-    public void criarTarefa() {
+    public Tarefa criarTarefa() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escreva a tarefa: ");
-        this.texto = scanner.nextLine();
+        var novaTarefa = new Tarefa(scanner.nextLine());
         System.out.println("Tarefa criada:" +
                 "\n"+this.texto);
         this.status = true;
         this.dataInicio = LocalDate.now();
         this.dataAlteracao = LocalDate.now();
+
+        return novaTarefa;
     }
 
     public Boolean getStatus() {
@@ -40,4 +42,5 @@ public class Tarefa {
                 "\nData da ultima alteraçao:" + dataAlteracao +
                 '.';
     }
+
 }
