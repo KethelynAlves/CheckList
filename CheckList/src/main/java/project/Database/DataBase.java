@@ -7,26 +7,36 @@ import java.sql.SQLException;
 public class DataBase {
     private Connection conexao;
     private static DataBase INSTANCE = null;
+    private static final String URL = "jdbc:sqlite:checklist.db";
+
     private DataBase(){
         try{
-            conexao = DriverManager.getConnection("jdbc:sqlite:checklist.db");
+            conexao = DriverManager.getConnection(URL);
         } catch (SQLException e){
-            System.err.println("Algo deu errado.");
+            System.err.println("Erro ao conectar no banco");
             e.printStackTrace();
-            throw new RuntimeException("Erro ao conectar no banco", e);
+            conexao=null;
         }
     }
 
     public Connection getConexao() {
-        return this.conexao;
+        if (conexao == null) {
+            try {
+                this.conexao = DriverManager.getConnection(URL);
+            } catch (SQLException e) {
+                System.err.println("Erro ao restaurar conexão:");
+                e.printStackTrace();
+            }
+        }
+        return conexao;
     }
 
     public void closeConexao(){
         try {
             this.conexao.close();
         } catch (SQLException e) {
-            System.err.println("Deu erro ao fechar a conexão !");
-            throw new RuntimeException(e);
+            System.err.println("Erro ao fechar a conexão.");
+            e.printStackTrace();
         }
     }
 

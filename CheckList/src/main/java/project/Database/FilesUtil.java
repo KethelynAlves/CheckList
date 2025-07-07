@@ -1,7 +1,6 @@
 package project.Database;
 
 import java.io.*;
-import java.sql.Connection;
 import java.util.logging.Logger;
 
 public class FilesUtil {
