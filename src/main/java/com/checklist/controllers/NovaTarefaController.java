@@ -19,13 +19,16 @@ public class NovaTarefaController {
     @FXML
     private Button btnSalvar;
 
-    Connection connection = DataBase.getInstance().getConexao();
-    TarefaDAO tarefaDAO = new TarefaDAO(connection);
-
     private HelloController mainController;
+
+    private TarefaDAO tarefaDAO;
 
     public void setMainController(HelloController mainController) {
         this.mainController = mainController;
+    }
+
+    public void setTarefaDAO(TarefaDAO dao) {
+        this.tarefaDAO = dao;
     }
 
     @FXML

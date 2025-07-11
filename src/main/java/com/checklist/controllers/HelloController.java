@@ -26,9 +26,9 @@ public class HelloController {
 
     private Connection connection;
 
-    public void initialize() {
+    public void initialize(Connection conn) {
         // Inicializa o DAO
-        connection = DataBase.getInstance().getConexao();
+        connection = conn;
         this.tarefaDAO = new TarefaDAO(connection);
         comboFiltro.getItems().addAll("Todas", "Pendentes", "Concluídas");
         comboFiltro.setValue("Opção de visualização");
@@ -54,7 +54,7 @@ public class HelloController {
 
             NovaTarefaController controller = loader.getController();
             controller.setMainController(this); // Passa a referência
-
+            controller.setTarefaDAO(this.tarefaDAO);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
