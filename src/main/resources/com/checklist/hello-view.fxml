@@ -6,21 +6,21 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="723.0" prefHeight="653.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.checklist.controllers.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="723.0" prefHeight="653.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.checklist.controllers.HelloController">
 
-  <Button fx:id="AdicionarTarefa" layoutX="14.0" layoutY="31.0" onAction="#handleAdicionarTarefa" style="-fx-font-size: 14; -fx-background-color: #2196F3; -fx-text-fill: white;" text="+Adicionar Tarefa" />
-  <ComboBox layoutX="632.0" layoutY="33.0" prefHeight="25.0" prefWidth="173.0" promptText="Opções de visualização" />
-  <Label layoutX="392.0" layoutY="79.0" text="Tarefas" />
+  <Button fx:id="AdicionarTarefa" layoutX="13.0" layoutY="34.0" onAction="#handleAdicionarTarefa" style="-fx-font-size: 14; -fx-background-color: #2196F3; -fx-text-fill: white;" text="+Adicionar Tarefa" />
+  <ComboBox fx:id="comboFiltro" layoutX="713.0" layoutY="36.0" onAction="#handleFiltroChange" prefHeight="25.0" prefWidth="173.0" promptText="Opções de visualização" />
+  <Label layoutX="399.0" layoutY="71.0" text="Tarefas">
+      <font>
+         <Font size="24.0" />
+      </font></Label>
 
-  <ListView fx:id="listViewTarefas" layoutX="7.0" layoutY="121.0" prefHeight="524.0" prefWidth="807.0" />
+  <Button layoutX="385.0" layoutY="36.0" onAction="#carregarTarefas" text="Atualizar Tarefas" />
 
-  <Button layoutX="358.0" layoutY="33.0" text="Atualizar Tarefas" />
-
-  <ListView layoutX="7.0" layoutY="121.0" prefHeight="524.0" prefWidth="807.0">
+  <ListView layoutX="13.0" layoutY="114.0" prefHeight="531.0" prefWidth="873.0">
     <VBox fx:id="listaContainer" spacing="5" />
   </ListView>
-
-  <Button layoutX="367.0" layoutY="96.0" text="Atualizar Lista" />
 
 </Pane>

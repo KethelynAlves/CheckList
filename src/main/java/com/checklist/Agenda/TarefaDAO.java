@@ -13,38 +13,48 @@ public class TarefaDAO {
         this.conn = conn;
     }
 
-    public void acionarTarefa(String descricao) throws SQLException {
-        String sql = "INSERT INTO tarefa(descricao,data_inicio,concluido) VALUES (?, strftime('%d-%m-%y %H-%M', 'now'), 0)";
+    //Inserção OK
+    public void acionarTarefa(String descricao) {
+        String sql = "INSERT INTO tarefas(descricao,data_inicio,data_alteracao, status) VALUES (?, strftime('%Y-%m-%d %H:%M:%S', 'now'), strftime('%Y-%m-%d %H:%M:%S', 'now'), 1)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, descricao);
             stmt.executeUpdate();
+            System.out.println("Tarefa criada com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao adicionar nova tarefa: " + e.getMessage());
         }
     }
-    public void alterarStatus(int idTarefa, boolean status) throws SQLException{
-        String sql = "UPDATE tarefa SET concluido = ?, data_alteracao = datetime('now') WHERE idTarefa=?";
+
+    //Alteração de status OK
+    public void alterarStatus(int id, int status) {
+        String sql = "UPDATE tarefas SET status = ?, data_alteracao = strftime('%Y-%m-%d %H:%M:%S', 'now') WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setInt(1, status?1:0);
-            stmt.setInt(2, idTarefa);
+            stmt.setInt(1, status == 1 ? 0 : 1);
+            stmt.setInt(2, id);
             stmt.executeUpdate();
+            System.out.println("Status atualizados com sucesso.");
+        }catch (SQLException e) {
+            System.out.println("Erro ao alterar o status da tarefa: " + e.getMessage());
         }
     }
-    public List<Tarefa> listarTarefas(String casos) throws SQLException{
+
+    //Listagem de tarefas OK
+    public List<Tarefa> listarTarefas() {
         List<Tarefa> tarefas = new ArrayList<>();
-        String sql = switch (casos.toLowerCase()){
-            case "pendentes" -> "SELECT * FROM tarefa WHERE concluido = 1";
-            default -> "SELECT * FROM tarefa";
-        };
-        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet res = stmt.executeQuery()){
+        String sql = "SELECT * FROM tarefas";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet res = stmt.executeQuery()){
             while (res.next()){
-                Tarefa tarefa = new Tarefa(
-                        res.getInt("idTarefa"),
-                        res.getString("descricao"),
-                        res.getInt("concluido") == 1,
-                        res.getString("data_inicio"),
-                        res.getString("data_alteracao")
-                );
+                Tarefa tarefa = new Tarefa(res.getString("descricao"));
+                tarefa.setIdTarefa(res.getInt("id"));
+                tarefa.setStatus(res.getInt("status"));
+                tarefa.setDataInicio(res.getString("data_inicio"));
+                tarefa.setDataAlteracao(res.getString("data_alteracao"));
                 tarefas.add(tarefa);
             }
+        }catch (SQLException e) {
+            System.out.println("Erro ao listar as tarefas: " + e.getMessage());
         }
         return tarefas;
     }
