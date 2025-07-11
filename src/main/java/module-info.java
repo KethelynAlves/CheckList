@@ -1,12 +1,12 @@
-module com.checklist.checklist {
+module com.checklist {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
     requires java.sql;
 
-    opens com.checklist.checklist to javafx.fxml;
-    exports com.checklist.checklist;
-    exports com.checklist.checklist.controllers;
-    opens com.checklist.checklist.controllers to javafx.fxml;
+    opens com.checklist to javafx.fxml;
+    exports com.checklist;
+    exports com.checklist.controllers;
+    opens com.checklist.controllers to javafx.fxml;
 }
