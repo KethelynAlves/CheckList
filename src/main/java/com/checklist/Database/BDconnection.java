@@ -11,11 +11,10 @@ public class BDconnection {
         Connection conn = DataBase.getInstance().getConexao();
         try{
             Statement statement = conn.createStatement();
-            statement.setQueryTimeout(30);
-            String sql = FilesUtil.loadTextFile("tabelaLista.sql");
+            String sql = FilesUtil.loadTextFile("com/checklist/tabelaLista.sql");
             statement.execute(sql);
 
-            ResultSet res = statement.executeQuery("SELECT * FROM tabela");
+            ResultSet res = statement.executeQuery("SELECT * FROM tarefas");
             while (res.next()){
                 System.out.println("Tarefa: "+res.getString("descricao"));
             }

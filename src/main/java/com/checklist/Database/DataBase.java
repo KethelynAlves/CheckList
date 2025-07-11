@@ -11,6 +11,7 @@ public class DataBase {
 
     private DataBase(){
         try{
+            System.out.println("Conexao com o banco de dados realizada com sucesso.");
             conexao = DriverManager.getConnection(URL);
         } catch (SQLException e){
             System.err.println("Erro ao conectar no banco");
@@ -22,6 +23,7 @@ public class DataBase {
     public Connection getConexao() {
         if (conexao == null) {
             try {
+                System.out.println("Conexao com o banco de dados realizada com sucesso.");
                 this.conexao = DriverManager.getConnection(URL);
             } catch (SQLException e) {
                 System.err.println("Erro ao restaurar conexão:");
