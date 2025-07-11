@@ -28,23 +28,24 @@ public class TarefaDAO {
             stmt.executeUpdate();
         }
     }
-//    public List<Tarefa> listarTarefas(String casos) throws SQLException{
-//        List<Tarefa> tarefas = new ArrayList<>();
-//        String sql = switch (casos.toLowerCase()){
-//            case "pendentes" -> "SELECT * FROM tarefa WHERE concluido = 1";//logica parece trocada
-//            default -> "SELECT * FROM tarefa";
-//        };
-//        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet res = stmt.executeQuery()){
-//            while (res.next()){
-//                Tarefa tarefa = new Tarefa(
-//                        res.getInt("idTarefa"),
-//                        res.getString("descricao"),
-//                        res.getInt("concluido") == 0,
-//                        res.getString("data_alteracao")
-//                );
-//                tarefas.add(tarefa);
-//            }
-//        }
-//        return tarefas;
-//    }
+    public List<Tarefa> listarTarefas(String casos) throws SQLException{
+        List<Tarefa> tarefas = new ArrayList<>();
+        String sql = switch (casos.toLowerCase()){
+            case "pendentes" -> "SELECT * FROM tarefa WHERE concluido = 1";//1 é estar ativo - 0 é estar inativa/concluida
+            default -> "SELECT * FROM tarefa";
+        };
+        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet res = stmt.executeQuery()){
+            while (res.next()){
+                Tarefa tarefa = new Tarefa(
+                        res.getInt("idTarefa"),
+                        res.getString("descricao"),
+                        res.getInt("concluido") == 1,
+                        res.getString("data_inicio"),
+                        res.getString("data_alteracao")
+                );
+                tarefas.add(tarefa);
+            }
+        }
+        return tarefas;
+    }
 }
