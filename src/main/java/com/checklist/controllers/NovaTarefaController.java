@@ -22,16 +22,21 @@ public class NovaTarefaController {
     Connection connection = DataBase.getInstance().getConexao();
     TarefaDAO tarefaDAO = new TarefaDAO(connection);
 
+    private HelloController mainController;
+
+    public void setMainController(HelloController mainController) {
+        this.mainController = mainController;
+    }
+
     @FXML
     private void handleSalvar() {
         String tarefa = txtTarefa.getText().trim();
 
         if (!tarefa.isEmpty()) {
-            // Aqui você chamaria seu DAO para salvar a tarefa
             tarefaDAO.acionarTarefa(tarefa);
             System.out.println("Tarefa salva: " + tarefa);
             showMessage("Tarefa cadastrada com sucesso!");
-            // Fecha a janela
+            mainController.atualizarListaTarefas();
             Stage stage = (Stage) btnSalvar.getScene().getWindow();
             stage.close();
         } else {
@@ -40,7 +45,8 @@ public class NovaTarefaController {
     }
 
     private void showMessage(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.NONE, msg, ButtonType.OK);
+        alert.setTitle("Erro ao adicionar nova tarefa");
         alert.showAndWait();
     }
 }

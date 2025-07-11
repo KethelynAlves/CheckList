@@ -19,7 +19,7 @@ public class Main extends Application {
         Connection conn = DataBase.getInstance().getConexao();
         Parent root = FXMLLoader.load(Main.class.getResource("hello-view.fxml"));
         primaryStage.setTitle("Gerenciador de Tarefas");
-        primaryStage.setScene(new Scene(root, 819, 653));
+        primaryStage.setScene(new Scene(root, 900, 653));
         primaryStage.show();
     }
 

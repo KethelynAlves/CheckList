@@ -16,5 +16,4 @@
 
     <Button fx:id="btnSalvar" text="Salvar" onAction="#handleSalvar"
             style="-fx-font-size: 14; -fx-background-color: #4CAF50; -fx-text-fill: white;"/>
-
 </VBox>
