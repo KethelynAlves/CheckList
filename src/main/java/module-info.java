@@ -3,6 +3,7 @@ module com.checklist.checklist {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.sql;
 
     opens com.checklist.checklist to javafx.fxml;
     exports com.checklist.checklist;

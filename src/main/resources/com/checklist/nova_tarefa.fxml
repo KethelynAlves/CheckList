@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.checklist.controllers.NovaTarefaController" spacing="10" style="-fx-padding: 20;"
+      prefWidth="300">
+
+    <Label text="Digite a nova tarefa:" style="-fx-font-size: 14;"/>
+
+    <TextField fx:id="txtTarefa" style="-fx-font-size: 14;"/>
+
+    <Button fx:id="btnSalvar" text="Salvar"
+            style="-fx-font-size: 14; -fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+
+</VBox>
