@@ -11,7 +11,7 @@ public class Tarefa {
     private String dataAlteracao;
 
 
-    public Tarefa(String descricao){
+    public Tarefa(int idTarefa, String descricao, Boolean status, String dataInicio, String dataAlteracao){
         this.descricao = descricao;
         this.status = true;//true = ativo
         this.dataInicio = agora();
